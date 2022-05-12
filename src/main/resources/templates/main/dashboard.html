@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Authentification Bootstrap 4 Spring Boot.">
+    <meta name="author" content="Ghislain Nkagou">
+    <title th:utext="${title}"></title>
+
+    <!-- Include CSS block -->
+   <!-- <th:block th:include="main/layout/block_css"></th:block>-->
+
+    <!-- Fonts -->
+    <link rel = "stylesheet" type = "text/css" href = "../../static/css/font-google/font.css" th:href="@{/css/font-google/font.css}"/>
+    <link rel = "stylesheet" type = "text/css" href = "../../static/vendor/@fortawesome/fontawesome-free/css/all.min.css" th:href="@{/vendor/@fortawesome/fontawesome-free/css/all.min.css}"/>
+    <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">-->
+
+    <!-- Icons -->
+    <!-- <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">-->
+    <link rel = "stylesheet" type = "text/css" href = "../../static/css/nucleo/css/nucleo.css" th:href="@{/css/nucleo/css/nucleo.css}"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">-->
+
+    <!-- My CSS -->
+    <!--<link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">-->
+    <link rel = "stylesheet" type = "text/css" href = "../../static/css/mystyle/my.css" th:href="@{/css/mystyle/my.css}"/>
+
+    <!--Datatable + button-->
+    <!--<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">-->
+
+
+
+    <link rel = "stylesheet" type = "text/css" href = "../../static/vendor/DataTables/DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css" th:href="@{/vendor/DataTables/DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css}"/>
+
+    <link rel = "stylesheet" type = "text/css" href = "../../static/vendor/DataTables/DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css" th:href="@{/vendor/DataTables/DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css}"/>
+    <!--<link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css" rel="stylesheet">-->
+
+    <style>
+        .nav-tabs {
+            border-bottom:none;
+        }
+
+
+
+        .nav-tabs .nav-link.active {
+            background-color: #3be283;
+            border-bottom:#e2e2e2;
+            font-weight: bold;
+        }
+
+        .tab-pane.active .tab-pane-header {
+            padding:2rem;
+            background-color:#e2e2e2;
+            border-top-right-radius: .5rem;
+            border-top-left-radius: .5rem;
+            margin-bottom:1rem;
+        }
+
+        .tab-pane:first-child .tab-pane-header {
+            border-top-left-radius: 0;
+        }
+
+
+        td
+        {
+            text-align: center;
+        }
+
+        /*pour espace ente le form et le panel*/
+        .form-inline > * {
+            margin:10px 10px;
+        }
+
+        /*pour espace ente le form et le panel*/
+        .form-inline > * {
+            padding:10px 10px;
+        }
+
+        /*form
+        {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }*/
+    </style>
+
+</head>
+<body>
+
+<!-- Include MENU block -->
+<th:block th:include="main/_menu"></th:block>
+
+<br>
+<div>
+<!--<div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')or hasRole('ROLE_SUPERVISOR') or hasRole('ROLE_AGENT')">-->
+    <div  class="card mx-auto" style="width: 78rem">
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>YOUPI</h1>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- block content -->
+
+
+
+        <!-- block content -->
+
+    </div>
+</div>
+
+
+
+
+</section>
+<!-- page content -->
+
+
+<!-- Include END MENU block -->
+<th:block th:include="main/_end_menu"></th:block>
+
+
+
+
+<br/><br/>
+
+
+
+<!-- Include SCRIPT block -->
+<!--<th:block th:include="main/layout/block_script"></th:block>-->
+
+
+
+<!--<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>-->
+
+
+<script src="../../static/vendor/DataTables/DataTables/jQuery-3.3.1/jquery-3.3.1.js" th:src="@{vendor/DataTables/DataTables/jQuery-3.3.1/jquery-3.3.1.js}"></script>
+
+
+<script src="../../static/vendor/bootstrap/dist/js/bootstrap.bundle.min.js" th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+
+
+<script src="../../static/vendor/DataTables/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js" th:src="@{/vendor/DataTables/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js}"></script>
+
+
+<script src="../../static/vendor/DataTables/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js" th:src="@{/vendor/DataTables/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js}"></script>
+
+
+<script src="../../static/vendor/DataTables/DataTables/JSZip-2.5.0/jszip.min.js" th:src="@{/vendor/DataTables/DataTables/JSZip-2.5.0/jszip.min.js}"></script>
+
+
+<script src="../../static/vendor/DataTables/DataTables/pdfmake-0.1.36/pdfmake.min.js" th:src="@{/vendor/DataTables/DataTables/pdfmake-0.1.36/pdfmake.min.js}"></script>
+
+
+<script src="../../static/vendor/DataTables/DataTables/pdfmake-0.1.36/vfs_fonts.js" th:src="@{/vendor/DataTables/DataTables/pdfmake-0.1.36/vfs_fonts.js}"></script>
+
+
+<script src="../../static/vendor/DataTables/DataTables/Buttons-1.6.1/js/buttons.html5.min.js" th:src="@{/vendor/DataTables/DataTables/Buttons-1.6.1/js/buttons.html5.min.js}"></script>
+
+
+<script>
+    /*$(document).ready( function () {
+        var table = $('#index-stock').DataTable({
+
+            "sAjaxSource": "/stocks",
+            "sAjaxDataProp": "",
+          /!*  "order": [ 0, "desc" ],*!/
+            "aoColumnDefs": [
+                {
+                    "bSearchable": false,
+                    "bVisible": false,
+                    "aTargets": [0]
+                }
+
+            ],
+            "aoColumns": [
+
+                { "mData": "stockId"},
+                { "mData": "clientNom" },
+                { "mData": "projetNom" },
+              /!*  { "mData": "produitNom" },*!/
+                { "mData": "entrepotNom" },
+                { "mData": "stockQuantite" },
+
+            ],
+
+
+            language: {
+                /!*url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'*!/
+                sProcessing: "Traitement en cours...",
+                sSearch: "Rechercher&nbsp;:",
+                sLengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+                sInfo: "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                sInfoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                sInfoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                sInfoPostFix: "",
+                sLoadingRecords: "Chargement en cours...",
+                sZeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                sEmptyTable: "Aucune donn&eacute;e disponible dans le tableau",
+                oPaginate: {
+                    sFirst: "Premier",
+                    sPrevious: "Pr&eacute;c&eacute;dent",
+                    sNext: "Suivant",
+                    sLast: "Dernier"
+                },
+                oAria: {
+                    sSortAscending: ": activer pour trier la colonne par ordre croissant",
+                    sSortDescending: ": activer pour trier la colonne par ordre d&eacute;croissant"
+                }
+            },
+
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+
+
+        })
+    });*/
+
+    $(document).ready( function () {
+        /*var table =*/ $('#index-stock').DataTable({
+
+
+            language: {
+                /*url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'*/
+                sProcessing: "Traitement en cours...",
+                sSearch: "Rechercher&nbsp;:",
+                sLengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+                sInfo: "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                sInfoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                sInfoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                sInfoPostFix: "",
+                sLoadingRecords: "Chargement en cours...",
+                sZeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                sEmptyTable: "Aucune donn&eacute;e disponible dans le tableau",
+                oPaginate: {
+                    sFirst: "Premier",
+                    sPrevious: "Pr&eacute;c&eacute;dent",
+                    sNext: "Suivant",
+                    sLast: "Dernier"
+                },
+                oAria: {
+                    sSortAscending: ": activer pour trier la colonne par ordre croissant",
+                    sSortDescending: ": activer pour trier la colonne par ordre d&eacute;croissant"
+                }
+            },
+
+            dom: 'Bfrtip',
+            buttons: [{
+
+               /* 'copyHtml5',*/
+                extend :'excelHtml5',
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                   // $('row c[r^="F"]', sheet).attr( 's', '2' );
+
+                    // Loop over the cells in column `F`
+                   /* $('row c[r^="D"]', sheet).each( function () {
+                        // Get the value
+                        if ( $('is t', this).text() == 'NFC' ) {
+                            console.log($('is t', this).text());
+                            console.log($(this).css(font-weight))
+                            $(this).attr( 's', '20' );
+                        }
+                    });*/
+
+                }
+               /* 'csvHtml5',
+                'pdfHtml5'*/
+            }]
+
+
+        })
+    });
+</script>
+</body>
+</html>
