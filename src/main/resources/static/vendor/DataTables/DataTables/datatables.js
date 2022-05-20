@@ -36744,7 +36744,7 @@ TableProcessor.prototype.endRow = function (rowIndex, writer, pageBreaks) {
 
 		for (i = 0, l = xs.length; i < l; i++) {
 			var leftBorder = false, rightBorder = false;
-			var colIndex = xs[i].index;
+			var colIndex = xs[i].indexDemande;
 
 			// the current cell
 			if (colIndex < body[rowIndex].length) {
@@ -36759,7 +36759,7 @@ TableProcessor.prototype.endRow = function (rowIndex, writer, pageBreaks) {
 			}
 
 			if (leftBorder || rightBorder) {
-				this.drawVerticalLine(xs[i].x, y1 - hzLineOffset, y2 + this.bottomLineWidth, xs[i].index, writer);
+				this.drawVerticalLine(xs[i].x, y1 - hzLineOffset, y2 + this.bottomLineWidth, xs[i].indexDemande, writer);
 			}
 
 			if (i < l - 1) {
@@ -52194,7 +52194,7 @@ var GlyphIterator = function () {
   _createClass(GlyphIterator, [{
     key: "cur",
     get: function get() {
-      return this.glyphs[this.index] || null;
+      return this.glyphs[this.indexDemande] || null;
     }
   }]);
 
@@ -52417,7 +52417,7 @@ var OTProcessor = function () {
     }
 
     lookups.sort(function (a, b) {
-      return a.index - b.index;
+      return a.indexDemande - b.indexDemande;
     });
     return lookups;
   };
@@ -70594,10 +70594,10 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 			var nodeName = node.nodeName.toUpperCase();
 		
 			if ( nodeName == 'TR' ) {
-				return api.row( node ).index();
+				return api.row( node ).indexDemande();
 			}
 			else if ( nodeName == 'TD' || nodeName == 'TH' ) {
-				var cell = api.cell( node ).index();
+				var cell = api.cell( node ).indexDemande();
 		
 				return [
 					cell.row,
@@ -76078,7 +76078,7 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 			if ( col.bSortable ) {
 				if ( aSort.length > 0 && aSort[0].col == i ) {
 					th.setAttribute('aria-sort', aSort[0].dir=="asc" ? "ascending" : "descending" );
-					nextSort = asSorting[ aSort[0].index+1 ] || asSorting[0];
+					nextSort = asSorting[ aSort[0].indexDemande+1 ] || asSorting[0];
 				}
 				else {
 					nextSort = asSorting[0];
@@ -77853,7 +77853,7 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 				} );
 			}
 		}
-		else if ( order == 'index' || order == 'original' ) {
+		else if ( order == 'indexDemande.html' || order == 'original' ) {
 			for ( i=0, ien=settings.aoData.length ; i<ien ; i++ ) {
 				if ( search == 'none' ) {
 					a.push( i );
@@ -87505,7 +87505,7 @@ $.extend( DataTable.ext.buttons, {
 			// is a public API. The other option is to use
 			// `$( column(col).node() ).text()` but the node might not have been
 			// populated when Buttons is constructed.
-			var idx = dt.column( conf.columns ).index();
+			var idx = dt.column( conf.columns ).indexDemande();
 			var title = dt.settings()[0].aoColumns[ idx ].sTitle
 				.replace(/\n/g," ")        // remove new lines
 				.replace(/<br\s*\/?>/gi, " ")  // replace line breaks with spaces
@@ -90585,7 +90585,7 @@ DataTable.ext.buttons.print = {
 			.columns( config.exportOptions.columns )
 			.flatten()
 			.map( function (idx) {
-				return dt.settings()[0].aoColumns[dt.column(idx).index()].sClass;
+				return dt.settings()[0].aoColumns[dt.column(idx).indexDemande()].sClass;
 			} )
 			.toArray();
 

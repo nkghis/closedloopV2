@@ -35,80 +35,87 @@
                     </li>
                 </div>-->
 
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERVISOR')">
+                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_BANQUE') or hasRole('ROLE_MARCHAND')">
                     <li class="nav-item">
-                        <a th:href="@{/auth/produits}" class="nav-link">
-                            <i class="ni ni-diamond text-dark"></i> Produit
+                        <a th:href="@{/client/clients}" class="nav-link">
+                            <i class="ni ni-diamond text-dark"></i> Client
                         </a>
                     </li>
                 </div>
 
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERVISOR')">
-                    <li class="nav-item">
-                        <a th:href="@{/auth/emetteurs}" class="nav-link">
-                            <i class="ni ni-basket text-teal"></i> Emetteur
-                        </a>
-                    </li>
+                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_BANQUE') or hasRole('ROLE_MARCHAND') or hasRole('ROLE_CLIENT')">
+                <li class="nav-item">
+                    <a th:href="@{/carte/cartes}" class="nav-link">
+                        <i class="ni ni-ui-04 text-pink"></i> Carte
+                    </a>
+                </li>
                 </div>
 
-
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERVISOR')">
+                <div sec:authorize="hasRole('ROLE_ADMIN')or hasRole('ROLE_BANQUE') or hasRole('ROLE_MARCHAND') or hasRole('ROLE_CLIENT')">
                     <li class="nav-item">
-                        <a th:href="@{/auth/clients}" class="nav-link">
-                            <i class="ni ni-pin-3 text-orange"></i> Client
-                        </a>
-                    </li>
-                </div>
-
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERVISOR')">
-                    <li class="nav-item">
-                        <a th:href="@{/auth/projets}" class="nav-link">
-                            <i class="ni ni-books text-success"></i> Projet
-                        </a>
-                    </li>
-                </div>
-
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')">
-                    <li class="nav-item">
-                        <a th:href="@{/agent/receptions}" class="nav-link">
-                            <i class="ni ni-shop text-yellow"></i> Réception
+                        <a th:href="@{/compte/comptes}" class="nav-link">
+                            <i class="ni ni-basket text-teal"></i> Compte
                         </a>
                     </li>
                 </div>
 
 
-
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERVISOR')">
+                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_BANQUE')">
                     <li class="nav-item">
-                        <a th:href="@{/auth/entrepots}" class="nav-link">
-                            <i class="ni ni-building text-indigo"></i> Entrepôt
+                        <a th:href="@{/marchand/marchands}" class="nav-link">
+                            <i class="ni ni-pin-3 text-orange"></i> Marchand
+                        </a>
+                    </li>
+                </div>
+                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_BANQUE')">
+                    <li class="nav-item">
+                        <a th:href="@{/banque/transferts}" class="nav-link">
+                            <i class="ni ni-books text-success"></i> Transfert
                         </a>
                     </li>
                 </div>
 
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')">
+                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_BANQUE') or hasRole('ROLE_CLIENT') or hasRole('ROLE_MARCHAND')">
                     <li class="nav-item">
-                        <a th:href="@{/agent/distributions}" class="nav-link">
-                            <i class="ni ni-send text-light"></i> Entrée
+                        <a th:href="@{/transaction/transactions}" class="nav-link">
+                            <i class="ni ni-shop text-yellow"></i> Transaction
                         </a>
                     </li>
                 </div>
 
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')">
+
+
+                <div sec:authorize="hasRole('ROLE_CLIENT') or hasRole('ROLE_MARCHAND')">
                     <li class="nav-item">
-                        <a th:href="@{/agent/livraisons}" class="nav-link">
-                            <i class="ni ni-delivery-fast text-blue"></i> Sortie
+                        <a th:href="@{/rechargement/rechargements}" class="nav-link">
+                            <i class="ni ni-building text-indigo"></i> Rechargement
                         </a>
                     </li>
                 </div>
 
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERVISOR')">
+                <div sec:authorize="hasRole('ROLE_CLIENT') or hasRole('ROLE_MARCHAND')">
+                    <li class="nav-item">
+                        <a th:href="@{/rechargement/appro}" class="nav-link">
+                            <i class="ni ni-send text-light"></i> Demande Appro
+                        </a>
+                    </li>
+                </div>
+
+                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_MARCHAND') or hasRole('ROLE_BANQUE')">
+                    <li class="nav-item">
+                        <a th:href="@{/approvisionnement/appro}" class="nav-link">
+                            <i class="ni ni-delivery-fast text-blue"></i> Validation Appro
+                        </a>
+                    </li>
+                </div>
+
+                <!--<div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERVISOR')">
                     <li class="nav-item">
                         <a th:href="@{/auth/transfert}" class="nav-link">
                             <i class="ni ni-ui-04 text-pink"></i> Transfert
                         </a>
                     </li>
-                </div>
+                </div>-->
 
                 <!--<li class="nav-item">
                     <a class="nav-link" href="./examples/profile.html">
@@ -159,7 +166,7 @@
 
                 </div>
 
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_ACCES') or hasRole('ROLE_SUPERVISOR')">
+               <!-- <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_ACCES') or hasRole('ROLE_SUPERVISOR')">
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/access/ressources}">
                             <i class="ni ni-ui-04"></i> Ressources
@@ -170,7 +177,7 @@
                             <i class="ni ni-ui-04"></i> Fournisseurs
                         </a>
                     </li>
-                </div>
+                </div>-->
 
             </ul>
 

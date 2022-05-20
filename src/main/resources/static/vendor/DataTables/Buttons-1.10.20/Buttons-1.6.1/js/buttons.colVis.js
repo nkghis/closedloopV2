@@ -142,7 +142,7 @@ $.extend( DataTable.ext.buttons, {
 			// is a public API. The other option is to use
 			// `$( column(col).node() ).text()` but the node might not have been
 			// populated when Buttons is constructed.
-			var idx = dt.column( conf.columns ).index();
+			var idx = dt.column( conf.columns ).indexDemande();
 			var title = dt.settings()[0].aoColumns[ idx ].sTitle
 				.replace(/\n/g," ")        // remove new lines
 				.replace(/<br\s*\/?>/gi, " ")  // replace line breaks with spaces

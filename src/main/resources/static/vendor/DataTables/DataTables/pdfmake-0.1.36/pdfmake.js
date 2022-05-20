@@ -17210,7 +17210,7 @@ TableProcessor.prototype.endRow = function (rowIndex, writer, pageBreaks) {
 
 		for (i = 0, l = xs.length; i < l; i++) {
 			var leftBorder = false, rightBorder = false;
-			var colIndex = xs[i].index;
+			var colIndex = xs[i].indexDemande;
 
 			// the current cell
 			if (colIndex < body[rowIndex].length) {
@@ -17225,7 +17225,7 @@ TableProcessor.prototype.endRow = function (rowIndex, writer, pageBreaks) {
 			}
 
 			if (leftBorder || rightBorder) {
-				this.drawVerticalLine(xs[i].x, y1 - hzLineOffset, y2 + this.bottomLineWidth, xs[i].index, writer);
+				this.drawVerticalLine(xs[i].x, y1 - hzLineOffset, y2 + this.bottomLineWidth, xs[i].indexDemande, writer);
 			}
 
 			if (i < l - 1) {
@@ -32660,7 +32660,7 @@ var GlyphIterator = function () {
   _createClass(GlyphIterator, [{
     key: "cur",
     get: function get() {
-      return this.glyphs[this.index] || null;
+      return this.glyphs[this.indexDemande] || null;
     }
   }]);
 
@@ -32883,7 +32883,7 @@ var OTProcessor = function () {
     }
 
     lookups.sort(function (a, b) {
-      return a.index - b.index;
+      return a.indexDemande - b.indexDemande;
     });
     return lookups;
   };

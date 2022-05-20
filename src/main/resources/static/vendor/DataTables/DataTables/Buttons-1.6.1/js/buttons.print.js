@@ -95,7 +95,7 @@ DataTable.ext.buttons.print = {
 			.columns( config.exportOptions.columns )
 			.flatten()
 			.map( function (idx) {
-				return dt.settings()[0].aoColumns[dt.column(idx).index()].sClass;
+				return dt.settings()[0].aoColumns[dt.column(idx).indexDemande()].sClass;
 			} )
 			.toArray();
 

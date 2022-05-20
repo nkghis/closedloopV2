@@ -593,7 +593,7 @@ var Charts = (function() {
 					},
 					tooltips: {
 						enabled: false,
-						mode: 'index',
+						mode: 'indexDemande.html',
 						intersect: false,
 						custom: function(model) {
 
@@ -689,11 +689,11 @@ var Charts = (function() {
 					tooltips: {
 						callbacks: {
 							title: function(item, data) {
-								var title = data.labels[item[0].index];
+								var title = data.labels[item[0].indexDemande];
 								return title;
 							},
 							label: function(item, data) {
-								var value = data.datasets[0].data[item.index];
+								var value = data.datasets[0].data[item.indexDemande];
 								var content = '';
 
 								content += '<span class="popover-body-value">' + value + '</span>';

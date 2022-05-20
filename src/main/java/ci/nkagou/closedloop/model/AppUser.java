@@ -1,5 +1,6 @@
 package ci.nkagou.closedloop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -46,6 +47,12 @@ public class AppUser {
 
     private List<AppRole> roles;
 
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "compteId")
+    private Compte compte;
+
     @Transient
     private String mesroles;
 
@@ -55,5 +62,10 @@ public class AppUser {
         this.enabled = enabled;
     }
 
-
+    public AppUser(String userName, String encrytedPassword, boolean enabled, Compte compte) {
+        this.userName = userName;
+        this.encrytedPassword = encrytedPassword;
+        this.enabled = enabled;
+        this.compte = compte;
+    }
 }

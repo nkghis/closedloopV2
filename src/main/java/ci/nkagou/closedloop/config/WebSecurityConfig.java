@@ -70,14 +70,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // If no login, it will redirect to /login page.
         //http.authorizeRequests().antMatchers("/admin/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/user/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/dashboard/*").access("hasAnyRole('ROLE_USER', 'ROLE_ACCES', 'ROLE_ADMIN')");
+
         http.authorizeRequests().antMatchers("/acces/**").access("hasAnyRole('ROLE_ACCES', 'ROLE_ADMIN')");
-        /*http.authorizeRequests().antMatchers("/auth/**").access("hasAnyRole('ROLE_SUPERVISOR', 'ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/agent/**").access("hasAnyRole('ROLE_AGENT', 'ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/access/**").access("hasAnyRole('ROLE_ACCES', 'ROLE_ADMIN', 'ROLE_SUPERVISOR')");
-        http.authorizeRequests().antMatchers("/stocks").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPERVISOR', 'ROLE_AGENT')");
+        http.authorizeRequests().antMatchers("/client/**").access("hasAnyRole('ROLE_BANQUE', 'ROLE_ADMIN', 'ROLE_MARCHAND')");
+        http.authorizeRequests().antMatchers("/carte/**").access("hasAnyRole('ROLE_BANQUE', 'ROLE_ADMIN', 'ROLE_MARCHAND', 'ROLE_CLIENT')");
+        http.authorizeRequests().antMatchers("/marchand/**").access("hasAnyRole('ROLE_BANQUE', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/banque/**").access("hasAnyRole('ROLE_BANQUE', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/compte/**").access("hasAnyRole('ROLE_BANQUE', 'ROLE_ADMIN','ROLE_MARCHAND','ROLE_CLIENT' )");
+        http.authorizeRequests().antMatchers("/rechargement/**").access("hasAnyRole('ROLE_MARCHAND','ROLE_CLIENT' )");
+        http.authorizeRequests().antMatchers("/approvisionnement/**").access("hasAnyRole('ROLE_MARCHAND','ROLE_BANQUE', 'ROLE_ADMIN' )");
+        /*http.authorizeRequests().antMatchers("/stocks").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPERVISOR', 'ROLE_AGENT')");
         http.authorizeRequests().antMatchers("/dashboard/*").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPERVISOR', 'ROLE_AGENT')");
+
 */
+        http.authorizeRequests().antMatchers("/dashboard/*").access("hasAnyRole('ROLE_USER', 'ROLE_ACCES', 'ROLE_ADMIN','ROLE_CLIENT', 'ROLE_MARCHAND', 'ROLE_BANQUE')");
         // For ADMIN only.
         http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
 

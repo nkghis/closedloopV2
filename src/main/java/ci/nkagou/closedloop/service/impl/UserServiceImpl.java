@@ -2,7 +2,10 @@ package ci.nkagou.closedloop.service.impl;
 
 import ci.nkagou.closedloop.model.AppRole;
 import ci.nkagou.closedloop.model.AppUser;
+import ci.nkagou.closedloop.model.UserRole;
+import ci.nkagou.closedloop.repository.RoleRepository;
 import ci.nkagou.closedloop.repository.UserRepository;
+import ci.nkagou.closedloop.service.RoleService;
 import ci.nkagou.closedloop.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +25,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private RoleService roleService;
 
 
     @Override
@@ -78,4 +82,25 @@ public class UserServiceImpl implements UserService {
     public Boolean existsByUserName(String userName) {
         return userRepository.existsByUserName(userName);
     }
+
+    @Override
+    public Boolean hasRole(AppUser user, String roleName) {
+        List<AppRole> roles = roleService.getRolesByUser(user);
+        List<String> stringRoles = new ArrayList<String>();
+        for (AppRole r : roles){
+            String rname = r.getRoleName();
+            stringRoles.add(rname);
+        }
+        Boolean role = false;
+        Boolean roleContain = stringRoles.contains(roleName);
+        if (roleContain){
+            role = true;
+        }else {
+            role = false;
+        }
+
+        return role;
+    }
+
+
 }

@@ -1,0 +1,116 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Authentification Bootstrap 4 Spring Boot.">
+    <meta name="author" content="Ghislain Nkagou">
+    <title th:utext="${title}"></title>
+
+    <!-- Include CSS block -->
+    <th:block th:include="main/layout/block_css"></th:block>
+
+</head>
+<body>
+
+<!-- Include MENU block -->
+<th:block th:include="main/_menu"></th:block>
+
+
+<!-- page content -->
+<br>
+
+<div class="card mx-auto" style="width: 50rem">
+
+    <div class="card-header">
+        <div class="row">
+
+            <div class="col-md-8">
+                <h5><strong>Nouveau Projet.</strong></h5>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card-body">
+        <form th:action="@{/client/clients/save}" th:object="${clientdto}"  method="post">
+            <!-- Nom Client Form Input -->
+            <div  class="form-group row">
+                <label for="name" class="col-sm-4 col-form-label text-md-right"><strong>Nom</strong></label>
+
+                <div class="col-md-6">
+
+                    <input id="name" type="text" class="form-control" th:field="*{clientName}" autofocus>
+                    <span th:if="${#fields.hasErrors('clientName')}" th:errors="*{clientName}" th:class="help-block"></span>
+                </div>
+            </div>
+
+
+            <!-- Seuil de securite -->
+            <div  class="form-group row">
+                <label for="clientContact" class="col-sm-4 col-form-label text-md-right"><strong>Contact</strong></label>
+
+                <div class="col-md-6">
+
+                    <input id="clientContact" type="text"  class="form-control" th:field="*{clientContact}"  autofocus>
+                    <!--<span th:if="${#fields.hasErrors('projetNom')}" th:errors="*{projetNom}"  th:class="help-block"></span>-->
+                    <div id="msg"></div>
+                </div>
+            </div>
+
+           <!-- &lt;!&ndash; Marchand Form Input &ndash;&gt;
+            <div class="form-group row">
+                <label for="marchand" class="col-sm-4 col-form-label text-md-right"><strong>Marchand</strong></label>
+
+                <div class="col-md-6">
+                    <select  id="marchand" name="marchand" class="select-type form-control"  >
+                        <option value="">&#45;&#45; Selectionner le Marchand &#45;&#45;</option>
+                        <option th:each="c:${marchands}" th:value="${c.marchandId}" th:text="${c.marchandName}"></option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('marchand')}" th:errors="*{marchand}"></span>
+                </div>
+            </div>-->
+
+
+
+
+
+
+
+            <div class="form-group row">
+                <label for="contact" class="col-sm-4 col-form-label text-md-right"><strong></strong></label>
+
+                <div id="contact" class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Enregister</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- page content -->
+
+
+<!-- Include END MENU block -->
+<th:block th:include="main/_end_menu"></th:block>
+
+
+
+<br/><br/>
+
+
+
+<!-- Include SCRIPT block -->
+<th:block th:include="main/layout/block_script"></th:block>
+
+</body>
+</html>
