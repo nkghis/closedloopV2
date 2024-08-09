@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
         @UniqueConstraint(columnNames = "order_number") })
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "typecarte")
+@DiscriminatorColumn(name = "typecarte", discriminatorType = DiscriminatorType.STRING)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -37,6 +37,13 @@ public abstract class Carte {
 
     @Column(name = "initiation_date", nullable = true)
     private LocalDateTime initiationDate;
+
+    //Add for field in this section to get type carte
+    @Column(name="typecarte", insertable = false, updatable = false)
+    protected String typeCarte;
+
+
+
 
 
 

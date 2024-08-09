@@ -1,0 +1,178 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Authentification Bootstrap 4 Spring Boot.">
+    <meta name="author" content="Ghislain Nkagou">
+    <title th:utext="${title}"></title>
+
+    <!-- Include CSS block -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <th:block th:include="main/layout/block_css"></th:block>
+
+</head>
+<body>
+
+<!-- Include MENU block -->
+<th:block th:include="main/_menu"></th:block>
+
+
+<!-- page content -->
+<br>
+
+<div class="card mx-auto" style="width: 50rem">
+
+    <div class="card-header">
+        <div class="row">
+
+            <div class="col-md-8">
+                <h5><strong>Nouveau Compte Carte.</strong></h5>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card-body">
+        <form th:action="@{/compte/comptes/cartes/save}" th:object="${comptecartedto}"  method="post">
+
+            <!-- Numero de compte Form Input -->
+            <div  class="form-group row">
+                <label for="nCompte" class="col-sm-4 col-form-label text-md-right"><strong>Numéro de compte</strong></label>
+
+                <div class="col-md-6">
+
+                    <input id="nCompte" type="number" class="form-control" th:field="*{numeroCompte}" required autofocus>
+                    <span th:if="${#fields.hasErrors('numeroCompte')}" th:errors="*{numeroCompte}" th:class="help-block"></span>
+                </div>
+            </div>
+
+
+            <!-- Numero de serie Form Input -->
+            <!-- Motif  select -->
+            <div class="form-group row">
+                <label for="sNumber" class="col-sm-4 form-control-label text-md-right"><strong>Numéro Série</strong></label>
+
+                <div class="col-md-6">
+                    <select  id="sNumber" name="serialNumber" class="select-type form-control" required >
+                        <option value="">-- Numéro de série --</option>
+                        <option th:each="c:${cartes}" th:value="${c.serialNumber}" th:text="${c.serialNumber}" th:field="*{serialNumber}"></option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}"></span>
+                </div>
+            </div>
+
+           <!-- <div  class="form-group row">
+                <label for="sNumber" class="col-sm-4 col-form-label text-md-right"><strong>Numéro serie carte</strong></label>
+
+                <div class="col-md-6">
+
+                    <input id="sNumber" type="text"  class="form-control" th:field="*{serialNumber}" required autofocus>
+                    <span th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}"  th:class="help-block"></span>
+                    &lt;!&ndash;<div id="msg"></div>&ndash;&gt;
+                </div>
+            </div>-->
+
+
+            <!-- Code Pin Form Input -->
+            <div  class="form-group row">
+                <label for="codepin" class="col-sm-4 col-form-label text-md-right"><strong>Code PIN</strong></label>
+
+                <div class="col-md-6">
+
+                    <input id="codepin" type="password" class="form-control" maxlength="4" th:field="*{pinCode}" required autofocus>
+                    <span th:if="${#fields.hasErrors('pinCode')}" th:errors="*{pinCode}" th:class="help-block"></span>
+                </div>
+            </div>
+
+            <!-- Code Pin Verify Form Input -->
+            <div  class="form-group row">
+                <label for="codepinVerifiy" class="col-sm-4 col-form-label text-md-right"><strong>Confirmation Code PIN</strong></label>
+
+                <div class="col-md-6">
+
+                    <input id="codepinVerifiy" type="password" class="form-control" name="codepinconfirm" maxlength="4" required autofocus>
+                    <div id="msg"></div>
+                   <!-- <span th:if="${#fields.hasErrors('numeroCompte')}" th:errors="*{numeroCompte}" th:class="help-block"></span>-->
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="btn" class="col-sm-4 col-form-label text-md-right"><strong></strong></label>
+
+                <div id="btn" class="col-md-6">
+                    <button type="submit" class="btn btn-primary" >Enregister</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- page content -->
+
+
+<!-- Include END MENU block -->
+<th:block th:include="main/_end_menu"></th:block>
+
+
+
+<br/><br/>
+
+
+
+<!-- Include SCRIPT block -->
+<th:block th:include="main/layout/block_script"></th:block>
+
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        //Action Java script lorsque le champ quantité perd le focus.
+        $("#codepinVerifiy").on("blur", function(e) {
+
+            //Initialisation des balise
+            //Cacher le balise
+            $('#btn').hide();
+            $('#msg').hide();
+
+            //Declaration des variable
+            var codepin = $('#codepin').val();
+            var codepinConfirm = $('#codepinVerifiy').val();
+
+            if (codepin != codepinConfirm ) {
+                $('#btn').hide();
+                $('#msg').show();
+                $("#msg").html("Les champs Code PIN et Confirm Code PIN ne correspondent pas").css("color", "red");
+            }
+
+            else{
+
+                    //Affichage
+                    $('#btn').show();
+                    //$('#btn').enable();
+
+
+
+            }
+        });
+
+        $(document).ready(function() {
+            $('.select-type').select2();
+        });
+    });
+</script>
+
+</body>
+</html>

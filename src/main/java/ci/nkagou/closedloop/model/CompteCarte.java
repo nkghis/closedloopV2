@@ -34,20 +34,20 @@ public class CompteCarte extends Compte {
     @JoinColumn(name = "carteId")
     private Carte carte;
 
-    public CompteCarte(@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, @NotBlank String pinCode, Client client, Carte carte) {
-        super(balance, isEnable, initiationDate);
+    public CompteCarte(@NotNull Long numeroCompte,@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, @NotBlank String pinCode, Client client, Carte carte) {
+        super(balance, isEnable, initiationDate, numeroCompte);
         this.pinCode = pinCode;
         this.client = client;
         this.carte = carte;
     }
 
-    public CompteCarte(@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, @NotBlank String pinCode) {
-        super(balance, isEnable, initiationDate);
+    public CompteCarte(@NotNull Long numeroCompte,@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, @NotBlank String pinCode) {
+        super(balance, isEnable, initiationDate, numeroCompte);
         this.pinCode = pinCode;
     }
 
-    public CompteCarte(@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, @NotBlank String pinCode, Client client) {
-        super(balance, isEnable, initiationDate);
+    public CompteCarte(@NotNull Long numeroCompte,@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, @NotBlank String pinCode, Client client) {
+        super(balance, isEnable, initiationDate, numeroCompte);
         this.pinCode = pinCode;
         this.client = client;
     }

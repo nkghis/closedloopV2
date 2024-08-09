@@ -78,7 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/banque/**").access("hasAnyRole('ROLE_BANQUE', 'ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/compte/**").access("hasAnyRole('ROLE_BANQUE', 'ROLE_ADMIN','ROLE_MARCHAND','ROLE_CLIENT' )");
         http.authorizeRequests().antMatchers("/rechargement/**").access("hasAnyRole('ROLE_MARCHAND','ROLE_CLIENT' )");
-        http.authorizeRequests().antMatchers("/approvisionnement/**").access("hasAnyRole('ROLE_MARCHAND','ROLE_BANQUE', 'ROLE_ADMIN' )");
+        http.authorizeRequests().antMatchers("/transfert/**").access("hasAnyRole('ROLE_CLIENT')");
+        http.authorizeRequests().antMatchers("/demandeApprovisionnement/**").access("hasAnyRole('ROLE_MARCHAND','ROLE_BANQUE', 'ROLE_ADMIN' )");
         /*http.authorizeRequests().antMatchers("/stocks").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPERVISOR', 'ROLE_AGENT')");
         http.authorizeRequests().antMatchers("/dashboard/*").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPERVISOR', 'ROLE_AGENT')");
 

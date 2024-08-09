@@ -27,13 +27,13 @@ public class CompteClient extends Compte {
     private Client client;
 
 
-    @Column(name = "numero_compte", nullable = true)
-    private Long numeroCompte;
+   /* @Column(name = "numero_compte", nullable = true)
+    private Long numeroCompte;*/
 
-    public CompteClient(@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, Client client, Long numeroCompte) {
-        super(balance, isEnable, initiationDate);
+    public CompteClient(@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, Client client, @NotNull Long numeroCompte) {
+        super(balance, isEnable, initiationDate, numeroCompte);
         this.client = client;
-        this.numeroCompte = numeroCompte;
+       /* this.numeroCompte = numeroCompte;*/
     }
 
 }

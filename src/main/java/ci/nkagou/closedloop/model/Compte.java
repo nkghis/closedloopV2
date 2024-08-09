@@ -28,6 +28,10 @@ public abstract class Compte {
     @Column(name = "compte_id", nullable = false)
     private Long compteId;
 
+    @NotNull(message = "Le [COMPTE] ne peut pas être null")
+    @Column(name = "numero_compte", nullable = false)
+    private Long numeroCompte;
+
     @NotNull(message = "Le [solde] ne peut pas être null")
     @Column(name = "balance", nullable = false)
     private double balance;
@@ -39,11 +43,16 @@ public abstract class Compte {
     @Column(name = "initiation_date", nullable = false)
     private LocalDateTime initiationDate;
 
+    //Add for field in this section to get type carte
+    @Column(name="typecompte", insertable = false, updatable = false)
+    protected String typeCompte;
 
-    public Compte(@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate) {
+
+    public Compte(@NotNull(message = "Le [solde] ne peut pas être null") double balance, @NotNull Boolean isEnable, LocalDateTime initiationDate, Long numeroCompte) {
         this.balance = balance;
         this.isEnable = isEnable;
         this.initiationDate = initiationDate;
+        this.numeroCompte = numeroCompte;
     }
 
 

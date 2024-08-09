@@ -51,7 +51,7 @@
                 </li>
                 </div>
 
-                <div sec:authorize="hasRole('ROLE_ADMIN')or hasRole('ROLE_BANQUE') or hasRole('ROLE_MARCHAND') or hasRole('ROLE_CLIENT')">
+                <div sec:authorize="hasRole('ROLE_BANQUE') or hasRole('ROLE_MARCHAND') or hasRole('ROLE_CLIENT')">
                     <li class="nav-item">
                         <a th:href="@{/compte/comptes}" class="nav-link">
                             <i class="ni ni-basket text-teal"></i> Compte
@@ -67,9 +67,9 @@
                         </a>
                     </li>
                 </div>
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_BANQUE')">
+                <div sec:authorize="hasRole('ROLE_CLIENT')">
                     <li class="nav-item">
-                        <a th:href="@{/banque/transferts}" class="nav-link">
+                        <a th:href="@{/transfert/transferts}" class="nav-link">
                             <i class="ni ni-books text-success"></i> Transfert
                         </a>
                     </li>
@@ -85,7 +85,7 @@
 
 
 
-                <div sec:authorize="hasRole('ROLE_CLIENT') or hasRole('ROLE_MARCHAND')">
+                <div sec:authorize="hasRole('ROLE_CLIENT')">
                     <li class="nav-item">
                         <a th:href="@{/rechargement/rechargements}" class="nav-link">
                             <i class="ni ni-building text-indigo"></i> Rechargement
@@ -101,7 +101,7 @@
                     </li>
                 </div>
 
-                <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_MARCHAND') or hasRole('ROLE_BANQUE')">
+                <div sec:authorize="hasRole('ROLE_MARCHAND') or hasRole('ROLE_BANQUE')">
                     <li class="nav-item">
                         <a th:href="@{/approvisionnement/appro}" class="nav-link">
                             <i class="ni ni-delivery-fast text-blue"></i> Validation Appro
@@ -195,6 +195,39 @@
             <a th:href="@{/userInfo}" th:utext="${title}" class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"></a>
             <!-- User -->
             <ul class="navbar-nav align-items-center d-none d-md-flex">
+
+                <li sec:authorize="hasRole('ROLE_BANQUE') or hasRole('ROLE_CLIENT') or hasRole('ROLE_MARCHAND')">
+                    <!--<button type="button" class="btn btn-light btn-sm mr-1" style="color: black; background: white" >
+                        Balance :
+                    </button>-->
+
+                    <span class="badge badge-pill badge-light" style="color:black; background: white">
+                        Balance :
+                    </span>
+                </li>
+                <li sec:authorize="hasRole('ROLE_BANQUE') or hasRole('ROLE_CLIENT') or hasRole('ROLE_MARCHAND')">
+                    <button type="button" class="btn btn-success btn-sm ml-1" style="color: white" >
+                        <b th:utext="${navbar.balance}+ ' ' + 'XOF'">
+
+                        </b>
+
+                    </button>
+
+                </li>
+
+                <li sec:authorize="hasRole('ROLE_BANQUE') or hasRole('ROLE_MARCHAND')">
+                    <a href="/approvisionnement/appro" type="button" class="btn btn-primary btn-sm ml-3" style="color: white" >
+                        Validation en attente <span class="badge badge-light" style="color: red; background: white"> <b th:utext="${navbar.sizeApproForValidation}"></b> </span>
+                        <span class="sr-only">unread messages</span>
+                    </a>
+                </li>
+<!--                <li>
+                    <a href="#">
+                        <i class="ni ni-bell-55"></i>
+                    </a>
+                    <span>5</span>
+                </li>-->
+
                 <li class="nav-item dropdown">
                     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="media align-items-center">
@@ -233,6 +266,7 @@
                         </a>
                     </div>
                 </li>
+
             </ul>
         </div>
     </nav>

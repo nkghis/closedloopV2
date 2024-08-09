@@ -43,4 +43,12 @@ public class TypeoperationServiceImpl implements TypeoperationService {
     public void deleteById(Long typeOperationId) {
         typeoperationRepository.deleteById(typeOperationId);
     }
+
+    @Override
+    public Typeoperation findByTypeoperationNom(String nomTypeOperation){
+
+        Typeoperation typeoperation = typeoperationRepository.findByTypeoperationNom(nomTypeOperation);
+
+        return typeoperation;
+    }
 }

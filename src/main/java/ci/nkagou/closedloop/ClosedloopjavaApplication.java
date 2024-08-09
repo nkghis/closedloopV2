@@ -15,9 +15,15 @@ public class ClosedloopjavaApplication {
 
 	public static void main(String[] args) {
 
+
 		ApplicationContext ctx = SpringApplication.run(ClosedloopjavaApplication.class, args);
 
-		/*String p = "123";
+		/*UserRepository userRepository = ctx.getBean(UserRepository.class);
+		MarchandRepository marchandRepository = ctx.getBean(MarchandRepository.class);
+		Marchand marchand	= marchandRepository.getById(1L);
+		AppUser user = userRepository.getById(1L);
+		String l = "test";*/
+		String p = "123";
 		String password = EncrytedPasswordUtils.encrytePassword(p);
 
 		System.out.println("===============DEBUT TRANSACTION=======================");
@@ -98,8 +104,8 @@ public class ClosedloopjavaApplication {
 
 		Long numeroCompteSHELLVALLONS = Long.parseLong("200001");
 		Long numeroCompteTOTALKOUMASSIZONE = Long.parseLong("200002");
-		CompteMarchand cmaShellVallons = compteMarchandRepository.save(new CompteMarchand(200000, true, dateTime, 50000, numeroCompteSHELLVALLONS, marchandShellVallons ));
-		CompteMarchand cmaTotalShellKoumassiZone = compteMarchandRepository.save(new CompteMarchand(200000, true, dateTime, 50000, numeroCompteSHELLVALLONS, marchandTotalKoumassiZone ));
+		CompteMarchand cmaShellVallons = compteMarchandRepository.save(new CompteMarchand(numeroCompteSHELLVALLONS,200000, true, dateTime, 50000,  marchandShellVallons ));
+		CompteMarchand cmaTotalShellKoumassiZone = compteMarchandRepository.save(new CompteMarchand(numeroCompteTOTALKOUMASSIZONE,200000, true, dateTime, 50000,  marchandTotalKoumassiZone ));
 		System.out.println("===============AJOUT COMPTE MARCHAND=======================");
 
 		System.out.println("===============DEBUT COMPTE BANQUE=======================");
@@ -162,15 +168,29 @@ public class ClosedloopjavaApplication {
 		String pinHashCompte9 = BCrypt.hashpw(pinCompte9, BCrypt.gensalt(12));
 		System.out.println("****FIN HACHAGE CODE PIN****");
 
-		CompteCarte ccaICS1 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte1, clientICS,cartePersonneICS1 ));
-		CompteCarte ccaICS2 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte2, clientICS,cartePersonneICS2 ));
-		CompteCarte ccaICS3 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte3, clientICS,cartePersonneICS3 ));
-		CompteCarte ccaICS4 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte4, clientICS,cartePersonneICS4 ));
-		CompteCarte ccaICS5 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte5, clientICS,carteVehiculeICS ));
-		CompteCarte ccaSOCOCE1 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte6, clientSOCOCE,cartePersonneSOCOCE1 ));
-		CompteCarte ccaSOCOCE2 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte7, clientSOCOCE,cartePersonneSOCOCE2 ));
-		CompteCarte ccaSOCOCE3 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte8, clientSOCOCE,carteVehiculeSOCOCE1 ));
-		CompteCarte ccaSOCOCE4 = compteCarteRepository.save(new CompteCarte(3000, true, dateTime, pinHashCompte9, clientSOCOCE,carteVehiculeSOCOCE2 ));
+
+
+		Long numeroCompteCarteICS1 = Long.parseLong("400001");
+		Long numeroCompteCarteICS2 = Long.parseLong("400002");
+		Long numeroCompteCarteICS3 = Long.parseLong("400003");
+		Long numeroCompteCarteICS4 = Long.parseLong("400004");
+		Long numeroCompteCarteICS5 = Long.parseLong("400005");
+
+
+		Long numeroCompteCarteSOCOCE1 = Long.parseLong("400006");
+		Long numeroCompteCarteSOCOCE2 = Long.parseLong("400007");
+		Long numeroCompteCarteSOCOCE3 = Long.parseLong("400008");
+		Long numeroCompteCarteSOCOCE4 = Long.parseLong("400009");
+
+		CompteCarte ccaICS1 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteICS1, 3000, true, dateTime, pinHashCompte1, clientICS,cartePersonneICS1 ));
+		CompteCarte ccaICS2 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteICS2, 3000, true, dateTime, pinHashCompte2, clientICS,cartePersonneICS2 ));
+		CompteCarte ccaICS3 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteICS3, 3000, true, dateTime, pinHashCompte3, clientICS,cartePersonneICS3 ));
+		CompteCarte ccaICS4 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteICS4, 3000, true, dateTime, pinHashCompte4, clientICS,cartePersonneICS4 ));
+		CompteCarte ccaICS5 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteICS5,3000, true, dateTime, pinHashCompte5, clientICS,carteVehiculeICS ));
+		CompteCarte ccaSOCOCE1 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteSOCOCE1, 3000, true, dateTime, pinHashCompte6, clientSOCOCE,cartePersonneSOCOCE1 ));
+		CompteCarte ccaSOCOCE2 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteSOCOCE2, 3000, true, dateTime, pinHashCompte7, clientSOCOCE,cartePersonneSOCOCE2 ));
+		CompteCarte ccaSOCOCE3 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteSOCOCE3, 3000, true, dateTime, pinHashCompte8, clientSOCOCE,carteVehiculeSOCOCE1 ));
+		CompteCarte ccaSOCOCE4 = compteCarteRepository.save(new CompteCarte(numeroCompteCarteSOCOCE4, 3000, true, dateTime, pinHashCompte9, clientSOCOCE,carteVehiculeSOCOCE2 ));
 
 		System.out.println("===============AJOUT COMPTE CARTE=======================");
 
@@ -180,6 +200,7 @@ public class ClosedloopjavaApplication {
 
 			AppUser userICS = userRepository.save(new AppUser("ics", password, true, cclICS));
 			AppUser userSOCOCE = userRepository.save(new AppUser("sococe", password, true, cclSOCOCE));
+			AppUser userSotici = userRepository.save(new AppUser("sotici", password, true, cclSOTICI));
 			AppUser userShellVallons = userRepository.save(new AppUser("shell", password, true, cmaShellVallons));
 			AppUser userTotalKoumassiZone= userRepository.save(new AppUser("total", password, true, cmaTotalShellKoumassiZone));
 			AppUser userBGFI= userRepository.save(new AppUser("bgfi", password, true, cbaBGFI));
@@ -196,7 +217,7 @@ public class ClosedloopjavaApplication {
 		userRoleRepository.save(new UserRole(userTotalKoumassiZone,roleMarchand));
 		userRoleRepository.save(new UserRole(userBGFI,roleBanque));
 
-		System.out.println("===============DEBUT USER - COMPTE - ROLES=======================");*/
+		System.out.println("===============DEBUT USER - COMPTE - ROLES=======================");
 	}
 
 }

@@ -2,13 +2,16 @@ package ci.nkagou.closedloop.controller;
 
 import ci.nkagou.closedloop.dto.client.ClientDto;
 import ci.nkagou.closedloop.dto.client.ClientDtoOut;
+import ci.nkagou.closedloop.dto.navbar.Navbar;
 import ci.nkagou.closedloop.model.AppUser;
 import ci.nkagou.closedloop.model.Client;
 import ci.nkagou.closedloop.model.Marchand;
 import ci.nkagou.closedloop.service.ClientService;
 import ci.nkagou.closedloop.service.MarchandService;
+import ci.nkagou.closedloop.service.NavbarService;
 import ci.nkagou.closedloop.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -27,14 +30,24 @@ import java.util.List;
 @AllArgsConstructor
 public class ClientController {
 
+    @Autowired
     private ClientService clientService;
+    @Autowired
     private MarchandService marchandService;
+    @Autowired
     private UserService userService;
+
+    @Autowired
+    private NavbarService navbarService;
 
     @RequestMapping(value =  "/client/clients", method = RequestMethod.GET)
         public String index(Model model, Principal principal, HttpServletRequest request) {
         //get user connected
         AppUser user = userService.findByUserName(principal.getName());
+
+        //Display Balance & validation
+        Navbar navbar = navbarService.displayNavbar(user);
+
 
         List<ClientDtoOut> clients = new ArrayList<>();
 
@@ -48,16 +61,23 @@ public class ClientController {
         }
 
         model.addAttribute("listClients", clients);
+        model.addAttribute("navbar", navbar);
             return "client/index";
     }
 
     @RequestMapping(value = "/client/clients/new", method = RequestMethod.GET)
-    public String newClient(Model model){
+    public String newClient(Model model, Principal principal){
+
+        AppUser user = userService.findByUserName(principal.getName());
+
+        //Display Balance & validation
+        Navbar navbar = navbarService.displayNavbar(user);
 
         List<Marchand> marchands = marchandService.all();
         model.addAttribute("clientdto",new ClientDto());
       /*  model.addAttribute("marchands",marchands);*/
         model.addAttribute("title", "Client - Nouveau");
+        model.addAttribute("navbar", navbar);
         return "client/new";
     }
 

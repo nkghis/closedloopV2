@@ -2,5 +2,11 @@ package ci.nkagou.closedloop.repository;
 
 import ci.nkagou.closedloop.model.CompteMarchand;
 
-public interface CompteMarchandRepository extends CompteRepository<CompteMarchand> {
+import javax.transaction.Transactional;
+import java.util.List;
+
+@Transactional
+public interface CompteMarchandRepository extends CompteBaseRepository<CompteMarchand> {
+
+
 }

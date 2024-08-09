@@ -106,4 +106,6 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> listClientsByMarchand(Marchand marchand) {
         return clientRepository.findClientsByMarchand(marchand);
     }
+
+
 }

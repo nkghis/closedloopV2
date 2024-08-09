@@ -14,4 +14,5 @@ public class ClientDtoOut {
     private String clientName;
     private String clientContact;
     private Marchand marchand;
+
 }

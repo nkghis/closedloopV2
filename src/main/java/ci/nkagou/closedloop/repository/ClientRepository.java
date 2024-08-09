@@ -10,5 +10,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findByClientName(String clientName);
 
+    List<Client> findByMarchand(Marchand marchand);
+
     List<Client> findClientsByMarchand(Marchand marchand);
 }

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Authentification Bootstrap 4 Spring Boot.">
+    <meta name="author" content="Ghislain Nkagou">
+    <title th:utext="${title}"></title>
+
+    <!-- Include CSS block -->
+    <th:block th:include="main/layout/block_css"></th:block>
+
+</head>
+<body>
+
+<!-- Include MENU block -->
+<th:block th:include="main/_menu"></th:block>
+
+
+<!-- page content -->
+<br>
+<!-- Message pour succes de l operation -->
+<p class="alert alert-success text-center h6"   role="alert" th:text="${messagesucces}" th:if="${messagesucces}"></p>
+
+<!-- Message pour echec de l operation -->
+<p class="alert alert-danger text-center h6"   role="alert" th:text="${messagedanger}" th:if="${messagedanger}"></p>
+
+
+<div class="card mx-auto" style="width: 65rem;">
+    <div class="card-header">
+        <div class="row">
+
+            <div class="col-md-8">
+                <h5><strong>Liste des rechargement</strong></h5>
+            </div>
+
+            <div sec:authorize="hasRole('ROLE_CLIENT') or hasRole('ROLE_MARCHAND')"  class="col-md-4 page-action text-right">
+                <a th:href="@{/transfert/transferts/new}" class="btn btn-sm btn-success pull-right"> <i class="material-icons">open_in_new</i> <b>Nouveau Transfert</b></a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="card-body">
+        <div>
+            <div class="table-responsive">
+                <table class="table table-sm" id="index-rechargement">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Id</th>
+
+                        <!--<th class="text-center">Type Opération</th>-->
+
+                        <th class="text-center">Montant</th>
+                        <th class="text-center">N°Compte Source</th>
+                        <th class="text-center">Titulaire Source</th>
+                        <th class="text-center">N°Compte Cible</th>
+                        <th class="text-center">Titulaire Cible</th>
+                        <th class="text-center">Réference</th>
+
+
+                        <th class="text-center">Date</th>
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each = "c:${listTransfert}">
+                        <td th:text = "${c.operationId}" class="text-center"></td>
+                        <td th:text = "${c.amount}" class="text-center"></td>
+                        <td th:text = "${c.compteSource}" class="text-center"></td>
+                        <td th:text = "${c.nameCompteSource}" class="text-center"></td>
+                        <td th:text = "${c.compteCible}" class="text-center"></td>
+                        <td th:text = "${c.nameCompteCible}" class="text-center"></td>
+                        <td th:text = "${c.reference}" class="text-center"></td>
+                        <td th:text = "${c.dateOperation}" class="text-center"></td>
+                    </tr>
+
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- page content -->
+
+
+<!-- Include END MENU block -->
+<th:block th:include="main/_end_menu"></th:block>
+
+
+
+<br/><br/>
+
+
+
+<!-- Include SCRIPT block -->
+<th:block th:include="main/layout/block_script"></th:block>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#index-rechargement').DataTable({
+            order: [ 0, "desc" ],
+            pageLength: 5,
+            language: {
+                /*url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'*/
+                sProcessing: "Traitement en cours...",
+                sSearch: "Rechercher&nbsp;:",
+                sLengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+                sInfo: "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                sInfoEmpty: "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                sInfoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                sInfoPostFix: "",
+                sLoadingRecords: "Chargement en cours...",
+                sZeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                sEmptyTable: "Aucune donn&eacute;e disponible dans le tableau",
+                oPaginate: {
+                    sFirst: "Premier",
+                    sPrevious: "Pr&eacute;c&eacute;dent",
+                    sNext: "Suivant",
+                    sLast: "Dernier"
+                },
+                oAria: {
+                    sSortAscending: ": activer pour trier la colonne par ordre croissant",
+                    sSortDescending: ": activer pour trier la colonne par ordre d&eacute;croissant"
+                }
+            },
+        });
+    } );
+</script>
+</body>
+</html>

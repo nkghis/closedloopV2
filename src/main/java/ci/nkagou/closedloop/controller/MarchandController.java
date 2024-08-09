@@ -2,9 +2,14 @@ package ci.nkagou.closedloop.controller;
 
 import ci.nkagou.closedloop.dto.marchand.MarchandDto;
 import ci.nkagou.closedloop.dto.marchand.MarchandDtoOut;
+import ci.nkagou.closedloop.dto.navbar.Navbar;
+import ci.nkagou.closedloop.model.AppUser;
 import ci.nkagou.closedloop.model.Marchand;
 import ci.nkagou.closedloop.service.MarchandService;
+import ci.nkagou.closedloop.service.NavbarService;
+import ci.nkagou.closedloop.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,21 +26,42 @@ import java.util.List;
 @AllArgsConstructor
 public class MarchandController {
 
+    @Autowired
     private MarchandService marchandService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private NavbarService navbarService;
 
     @RequestMapping(value =  "/marchand/marchands", method = RequestMethod.GET)
     public String index(Model model, Principal principal) {
 
+        //get user connected
+        AppUser user = userService.findByUserName(principal.getName());
+
+        //Display Balance & validation
+        Navbar navbar = navbarService.displayNavbar(user);
+
         List<MarchandDtoOut> marchandDtos = marchandService.listMarchandToDto();
         model.addAttribute("listMarchands", marchandDtos);
+        model.addAttribute("navbar", navbar);
         return "marchand/index";
     }
 
     @RequestMapping(value = "/marchand/marchands/new", method = RequestMethod.GET)
-    public String newMarchand(Model model){
+    public String newMarchand(Model model, Principal principal){
+
+        //get user connected
+        AppUser user = userService.findByUserName(principal.getName());
+
+        //Display Balance & validation
+        Navbar navbar = navbarService.displayNavbar(user);
 
         model.addAttribute("marchanddto",new MarchandDto());
         model.addAttribute("title", "Marchand - Nouveau");
+        model.addAttribute("navbar", navbar);
         return "marchand/new";
     }
 
@@ -65,12 +91,20 @@ public class MarchandController {
     }
 
     @RequestMapping(value = "/marchand/marchands/edit/{id}", method = RequestMethod.GET)
-    public String editMarchand(@PathVariable Long id, Model model){
+    public String editMarchand(@PathVariable Long id, Model model, Principal principal ){
         Marchand m = marchandService.getById(id);
+        //get user connected
+        AppUser user = userService.findByUserName(principal.getName());
+
+        //Display Balance & validation
+        Navbar navbar = navbarService.displayNavbar(user);
+
         model.addAttribute("marchand", m);
         model.addAttribute("title", "Marchand - Edition");
+        model.addAttribute("navbar", navbar);
         return "marchand/edit";
     }
+
 
     @RequestMapping(value = "/marchand/marchands/delete/{id}", method = RequestMethod.GET)
     public String deleteMarchand(@PathVariable Long id, RedirectAttributes redirectAttributes){
